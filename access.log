@@ -16,3 +16,7 @@
 127.0.0.1 - - [20/Nov/2016:14:45:06 +0500] "GET /favicon.ico HTTP/1.1" 404 152 "-" "Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:50.0) Gecko/20100101 Firefox/50.0"
 127.0.0.1 - - [20/Nov/2016:14:45:06 +0500] "GET /favicon.ico HTTP/1.1" 404 152 "-" "Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:50.0) Gecko/20100101 Firefox/50.0"
 127.0.0.1 - - [20/Nov/2016:14:45:20 +0500] "GET /uploads/test.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:50.0) Gecko/20100101 Firefox/50.0"
+127.0.0.1 - - [20/Nov/2016:18:59:17 +0500] "GET /uploads/test.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:50.0) Gecko/20100101 Firefox/50.0"
+127.0.0.1 - - [20/Nov/2016:18:59:17 +0500] "GET /favicon.ico HTTP/1.1" 404 152 "-" "Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:50.0) Gecko/20100101 Firefox/50.0"
+127.0.0.1 - - [20/Nov/2016:18:59:17 +0500] "GET /favicon.ico HTTP/1.1" 404 152 "-" "Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:50.0) Gecko/20100101 Firefox/50.0"
+127.0.0.1 - - [20/Nov/2016:18:59:34 +0500] "GET /img/test.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:50.0) Gecko/20100101 Firefox/50.0"
