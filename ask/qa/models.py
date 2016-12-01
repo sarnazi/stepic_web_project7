@@ -2,20 +2,18 @@ from django.db import models
 
 # Create your models here.
 from django.contrib.auth.models import User
-#from django.core.management import setup_environ
-#from project import settings
-#setup_environ(settings)
-##from django.db import connection
-#cursor=connection.cursor()
-class QuetionManager(models.Manager):
-      def new():
-          qbs=Question.objects.filter(added_at=datetime.date.today())
+from django.utils.timezone import datetime
+class QuestionManager(models.Manager):
+      def mnew(self):
+          qbs=Question.objects.filter(added_at__lte=datetime.today())
+          qbs=Question.objects.order_by('-added_at')
           qbs=qbs.all()
-      def popular():
-          qss=Question.objects.filter(added_at=datetime.date.today())
-          qss=Question.order_by('rating')
+      def mpopular(self):
+          qss=Question.objects.filter(added_at__gt=(datetime.today()-7))
+          qss=Question.objects.order_by('-rating')
           qss=qss.all()
 class Question(models.Model):
+      objects=QuestionManager()
       title=models.CharField(max_length=255)
       text=models.TextField()
       added_at=models.DateTimeField(auto_now_add=True)

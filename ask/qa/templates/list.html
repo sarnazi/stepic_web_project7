@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title}} quesn </title>
+</head>
+<body>
+    <h1>{{ title }} quesn </h1>
+    <% for question in quesn %}
+         <p><a href="{{ question.get_url }}">{{ question }}, 
+                       {{question.author.id }}</a></p>
+    <% endfor %>
+</body>
+</html>
+
