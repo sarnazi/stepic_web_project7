@@ -9,10 +9,19 @@
     {% for question in questions %}
      <p>
      {{ question.title }}
-     <a href="{{ question.get_url }}"> {{ question.id }}</a> 
      </p>
+     <p>
+     {{ question.text }}
+     </p>
+     <h2> answers </h2>
+    {% for answer in question.answer_set.all %}
+       <li>
+       {{ answer.text }}
+       </li>
+    {% endfor %}
     {% endfor %} 
-    <nav>
+      </p>
+#    <nav>
     <ul class="pagination">
     {% for p in paginator.page_range %}
        {% if  p == page.number %}
@@ -21,11 +30,11 @@
        <li>
        {% endif %}
          <a href="{{ paginator.baseurl }}{{ p }}">
-         {{ p }}</a>
+         {{ p }} </a>
        </li> 
     {% endfor %}
     </ul>
-    </nav>
+    </nav>  #
 
 </body>
 </html>

@@ -5,13 +5,14 @@ from django.contrib.auth.models import User
 from django.utils.timezone import datetime
 class QuestionManager(models.Manager):
       def mnew(self):
-          qbs=Question.objects.filter(added_at__lte=datetime.today())
-          qbs=Question.objects.order_by('-added_at')
-          qbs=qbs.all()
+          return self.order_by('-added_at')
       def mpopular(self):
-          qss=Question.objects.filter(added_at__gt=(datetime.today()-7))
-          qss=Question.objects.order_by('-rating')
-          qss=qss.all()
+          return self.order_by('-rating')
+#          qss=Question.objects.filter(added_at__gt=(datetime.today()-7))
+      def mques(self,dd):
+          return self.filter(id=dd)
+      def mq(self,dd):
+          return self.get(id=dd)
 class Question(models.Model):
       objects=QuestionManager()
       title=models.CharField(max_length=255)
