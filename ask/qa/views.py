@@ -1,10 +1,11 @@
 from django.shortcuts import render
-
+from django.contrib.auth import authenticate,login
 # Create your views here.
-from django.http import HttpResponse,Http404
+from django.http import HttpResponse,Http404,HttpResponseRedirect
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from django.shortcuts import render
 from qa.models import Question,Answer,QuestionManager
+from qa.forms import AskForm,AnswerForm
 def vnew(request):
     try:
        limit=int(request.GET.get('limit',10))
@@ -50,7 +51,7 @@ def vpopular(request):
            'paginator': paginator,
            'page':    page,
      })
-#53
+#54
 def vques(request,dd):
     limit=int(request.GET.get("limit",10))
     page=int(request.GET.get("page",1))
@@ -70,7 +71,7 @@ def vques(request,dd):
                                             'questions': page.object_list,
 #                                         'answers':   Answer,
 #                                         'paginator':   paginator,
-#70                                             'page':        page,
+#74                                             'page':        page,
     })
 
 def vq(request,dd):
@@ -89,4 +90,36 @@ def vq(request,dd):
     })
 def test(request,*args,**kwargs):
     return HttpResponse('OK')
+def vask(request):
+    if request.method=="POST":  
+       form=AskForm(request.POST)
+       if form.is_valid():
+          question=form.save()
+          dd=question.id
+          question=Question.objects.get(id=dd)
+          url=question.get_url()
+          return HttpResponseRedirect(url)
+#          form=AnswerForm(initial={'question': question.id})
+    else:
+       form=AskForm()
+    return render(request,'ask.html', {
+       'form': form,
+#       'question': question,
+#       'dd': dd,
+    })
+#105
+def vq123(request,dd):
+    question=Question.objects.get(id=dd)
+    if request.method=="POST":
+       form=AnswerForm(request.POST)
+       if form.is_valid():
+          answer=form.save()
+#          url=question.get_url()
+#          return HttpResponseRedirect(url)
+    else:
+       form=AnswerForm(initial={'question': question.id})
+    return render(request,'question.html', {
+          'form': form,
+    })
+
 

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ question }}</title>
+</head>
+<body>
+    <hr>
+    <form method="post" action="{{ question.get_url }}">
+        <fieldset>
+{% csrf_token %}
+{{ form.as_p }}
+        </fieldset>
+        <button type="submit">Сохранить</button>
+    </form>
+    <hr>
+    <div><a href="/ask/">Ask a new question</a></div>
+#    <div>User: {{ user }}</div>#
+#    <div>Session: {{ session }}</div>#
+</body>
+</html>
