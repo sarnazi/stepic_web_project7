@@ -6,6 +6,8 @@ from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from django.shortcuts import render
 from qa.models import Question,Answer,QuestionManager
 from qa.forms import AskForm,AnswerForm
+from django.contrib.auth.models import User
+from django.utils.timezone import datetime
 def vnew(request):
     try:
        limit=int(request.GET.get('limit',10))
@@ -51,7 +53,7 @@ def vpopular(request):
            'paginator': paginator,
            'page':    page,
      })
-#54
+#56
 def vques(request,dd):
     limit=int(request.GET.get("limit",10))
     page=int(request.GET.get("page",1))
@@ -71,7 +73,7 @@ def vques(request,dd):
                                             'questions': page.object_list,
 #                                         'answers':   Answer,
 #                                         'paginator':   paginator,
-#74                                             'page':        page,
+#76                                             'page':        page,
     })
 
 def vq(request,dd):
@@ -104,22 +106,40 @@ def vask(request):
        form=AskForm()
     return render(request,'ask.html', {
        'form': form,
-#       'question': question,
+#109       'question': question,
 #       'dd': dd,
     })
-#105
+#112
 def vq123(request,dd):
     question=Question.objects.get(id=dd)
     if request.method=="POST":
        form=AnswerForm(request.POST)
        if form.is_valid():
           answer=form.save()
-#          url=question.get_url()
+#119          url=question.get_url()
 #          return HttpResponseRedirect(url)
     else:
        form=AnswerForm(initial={'question': question.id})
     return render(request,'question.html', {
           'form': form,
     })
-
+def vnach(request):
+    user,_=User.objects.get_or_create(username='test',password='test')
+#128
+    for i in range(20):
+        question=Question.objects.create(title='titleq'+str(i),text='textq'+str(i),author=user,rating=i)
+#,added_at=cast(concat('2016-01-',convert(i,char)) as date))
+    for i in range(20):
+        ii=i+20
+        question=Question.objects.create(title='titleq'+str(ii),text='textq'+str(ii),author=user,rating=ii)
+#,added_at=(cast(concat('2016-02-',convert(i)) as date)))
+    question=Question.objects.get(id=1)
+    for i in range(20):
+        answer=Answer.objects.create(text='texta'+str(i),question=question,author=user)
+#,added_at=cast(concat('2016-01-',convert(i)) as date)))
+#132
+    for i in range(20):
+        answer=Answer.objects.create(text='texta'+str(i+20),question=question,author=user)
+#,added_at=cast(concat('2016-02-',convert(i)) as date)))
+    return HttpResponse('Happy end')
 

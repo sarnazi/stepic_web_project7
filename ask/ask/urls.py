@@ -2,11 +2,12 @@ from django.conf.urls import patterns, include, url
 
 from django.contrib import admin
 admin.autodiscover()
-from qa.views import test,vnew,vpopular,vques,vq,vask,vq123
+from qa.views import test,vnew,vpopular,vques,vq,vask,vq123,vnach
 urlpatterns = patterns('qa.views',
     # Examples:
     # url(r'^$', 'ask.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
+    url(r'^nach/',vnach),
     url(r'^$',vnew),
 #    url(r'^login/.*$',test,name='index2'),
 #    url(r'^signup/.*$',test,name='index3'),
