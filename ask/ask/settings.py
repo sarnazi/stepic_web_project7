@@ -36,7 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'autofixture',
+#    'autofixture',
     'qa',     
 )
 
@@ -79,11 +79,19 @@ DATABASES = {
 #        'ENGINE': 'django.db.backends.sqlite3',
 #        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'tt',
+        'NAME': 'bd6',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '',
+        'DEFAULT_INDEX_TABLESPACE': 'index-name',
+        'DEFAULT_TABLESPACE': 'tablespace-name',
+    }
+}
+CACHES ={
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'my_cache_table',
     }
 }
 #AUTH_USER_MODEL = 'profile.user'

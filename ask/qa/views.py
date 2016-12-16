@@ -101,7 +101,7 @@ def vask(request):
           question=Question.objects.get(id=dd)
           url=question.get_url()
           return HttpResponseRedirect(url)
-#          form=AnswerForm(initial={'question': question.id})
+#104          form=AnswerForm(initial={'question': question.id})
     else:
        form=AskForm()
     return render(request,'ask.html', {
@@ -116,30 +116,21 @@ def vq123(request,dd):
        form=AnswerForm(request.POST)
        if form.is_valid():
           answer=form.save()
-#119          url=question.get_url()
-#          return HttpResponseRedirect(url)
+          url=answer.get_url()
+          return HttpResponseRedirect(url)
     else:
        form=AnswerForm(initial={'question': question.id})
     return render(request,'question.html', {
           'form': form,
     })
 def vnach(request):
-    user,_=User.objects.get_or_create(username='test',password='test')
+#    user,_=User.objects.get_or_create(username='test',password='test')
 #128
-    for i in range(20):
+    i=1
+    for i in range(40):
+        user,_=User.objects.get_or_create(username='user'+str(i),password='t'+str(i))
         question=Question.objects.create(title='titleq'+str(i),text='textq'+str(i),author=user,rating=i)
-#,added_at=cast(concat('2016-01-',convert(i,char)) as date))
-    for i in range(20):
-        ii=i+20
-        question=Question.objects.create(title='titleq'+str(ii),text='textq'+str(ii),author=user,rating=ii)
-#,added_at=(cast(concat('2016-02-',convert(i)) as date)))
-    question=Question.objects.get(id=1)
-    for i in range(20):
         answer=Answer.objects.create(text='texta'+str(i),question=question,author=user)
 #,added_at=cast(concat('2016-01-',convert(i)) as date)))
-#132
-    for i in range(20):
-        answer=Answer.objects.create(text='texta'+str(i+20),question=question,author=user)
-#,added_at=cast(concat('2016-02-',convert(i)) as date)))
     return HttpResponse('Happy end')
 
