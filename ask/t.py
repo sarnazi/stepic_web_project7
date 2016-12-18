@@ -16,7 +16,7 @@ settings.configure()
 import os
 import sys
 import unittest
-sys.path.append('/home/box/test6/ask/')
+sys.path.append('/home/box/test7/ask/')
 #os.environ.setdefault(['DJANGO_SETTINGS_MODULE']='/home/box/test6/ask/settings'
 #os.environ.setdefault("DJANGO_SETTINGS_MODULE","ask.settings")
 os.environ['DJANGO_SETINGS_MODULE']='ask.settings' 

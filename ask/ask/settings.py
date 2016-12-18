@@ -33,15 +33,17 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
+#    'django.contrib.sessions',
+    'django.contrib.sessions.backends.signed_cookies',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-#    'autofixture',
+    'autofixture',
     'qa',     
 )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+#     'ask.ask.middleware.SessionExpiry',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -94,6 +96,15 @@ CACHES ={
         'LOCATION': 'my_cache_table',
     }
 }
+PASSWORD_HASHERS = (
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+#    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+#    'django.contrib.auth.hashers.SHA1PasswordHasher',
+#    'django.contrib.auth.hashers.MD5PasswordHasher',
+#    'django.contrib.auth.hashers.CryptPasswordHasher',
+#    'django.contrib.auth.hashers.BCrypSHA256PasswordHasher',
+#    'django.contrib.auth.hashers.BCryptPasswordHasher',
+)
 #AUTH_USER_MODEL = 'profile.user'
 #AUTH_PROFILE_MODULE = 'qa.UserProfile'
 # Internationalization

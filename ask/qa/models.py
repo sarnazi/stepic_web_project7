@@ -4,6 +4,7 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.utils.timezone import datetime
+from datetime import timedelta
 class QuestionManager(models.Manager):
       def mnew(self):
           return self.order_by('-added_at')
@@ -36,6 +37,12 @@ class Answer(models.Model):
          return self.text
       def get_url(self):
           return "/ask/"
+#class Session(models.Model):
+#      key=models.CharField(unique=True)
+#      user=models.ForeignKey(User)
+#      expires=models.DateTimeField(null=True,blank=True)
+#      expire_date=models.DateTimeField()
+#default=datetime.now()+timedelta(days=5))
 
 
 
