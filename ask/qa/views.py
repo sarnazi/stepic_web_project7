@@ -110,8 +110,9 @@ def vmain(request):
 def vask(request):
     if request.method=="POST":  
        form=AskForm(request.POST)
+       form._user=request.user
        if form.is_valid():
-          form._user=request.user
+#          form._user=request.user
           question=form.save()
           dd=question.id
           question=Question.objects.get(id=dd)
@@ -130,8 +131,9 @@ def vq123(request,dd):
     question=Question.objects.get(id=dd)
     if request.method=="POST":
        form=AnswerForm(request.POST)
+       form._user=request.user
        if form.is_valid():
-          form._user=request.user
+#          form._user=request.user
           answer=form.save()
           url=answer.get_url()
           return HttpResponseRedirect(url)
