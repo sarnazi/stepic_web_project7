@@ -161,7 +161,11 @@ def vsignup(request):
           if user is not None:
              if user.is_active:
                 login(request,user)
-          return HttpResponseRedirect('/')
+             else:
+                pass
+          else:
+             pass
+       return HttpResponseRedirect('/')
     else:
        form=SignupForm()
     return render(request,'signup.html',{'form': form,
