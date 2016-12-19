@@ -113,6 +113,8 @@ def vask(request):
     if request.method=="POST":  
        form=AskForm(request.POST)
        form._user=request.user
+       if form._user.id is None:
+          return HttpResponseRedirect('/login/')
        if form.is_valid():
           question=form.save()
           dd=question.id
