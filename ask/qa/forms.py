@@ -53,9 +53,9 @@ class AnswerForm(forms.Form):
           answer.save()
           return answer
 class SignupForm(forms.Form):
-      username=forms.CharField(max_length=100,required=False)
+      username=forms.CharField(max_length=100,required=True)
       email=forms.EmailField(required=False)
-      password=forms.CharField(widget=forms.PasswordInput,required=False)
+      password=forms.CharField(widget=forms.PasswordInput,required=True)
       def clean_username(self):
           username=self.cleaned_data.get('username')
           if not username:
@@ -65,6 +65,7 @@ class SignupForm(forms.Form):
              raise forms.ValidationError('Username exist')
           except User.DoesNotExist:
              pass
+#             raise forms.ValidationError('No user')
           return username
       def clean_password(self):
           password=self.cleaned_data.get('password')
