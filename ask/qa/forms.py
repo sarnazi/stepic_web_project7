@@ -27,6 +27,11 @@ class AskForm(forms.Form):
 #t7          question.author=user
           question.author_id=self._user.id
           question.added_at=datetime.today()
+          if self._user.id is None:
+             user,_=User.objects.get_or_create(username='Anonim',password='test')
+             question.author=user
+          else:
+             pass
           question.save()
           return question
 class AnswerForm(forms.Form):
@@ -50,6 +55,11 @@ class AnswerForm(forms.Form):
 #t7          user,_ = User.objects.get_or_create(username='test',password='test')
 #t7          answer.author=user
           answer.author_id=self._user.id
+          if self._user.id is None:
+             user,_=User.objects.get_or_create(username='Anonim',password='test')
+             answer.author=user
+          else:
+             pass
           answer.save()
           return answer
 class SignupForm(forms.Form):
